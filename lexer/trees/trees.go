@@ -108,3 +108,17 @@ func Get_numbers_tree()*Node{
 	}
 	return root
 }
+
+func Get_white_spaces() *Node {
+	root := new(Node)
+	root.child = make(map[rune]*Node)
+	root.child[' '] = new(Node)
+	root.child[' '].final = true
+	root.child['\n'] = new(Node)
+	root.child['\n'].final = true
+	root.child['\t'] = new(Node)
+	root.child['\t'].final = true
+	root.child[13] = new(Node)
+	root.child[13].final = true
+	return root
+}
