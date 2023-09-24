@@ -84,4 +84,27 @@ func Get_numbers_tree()*Node{
 	for i := '1'; i <= '9'; i++ {
 		root.child['0'].child[i] = root.child['0']
 	}
+	root.child['0'].child['E'] = new(Node)
+	root.child['0'].child['E'].final = true
+	root.child['0'].child['E'].child = make(map[rune]*Node)
+	root.child['0'].child['.'] = new(Node)
+	root.child['0'].child['.'].final = true
+	root.child['0'].child['.'].child = make(map[rune]*Node)
+
+	root.child['0'].child['E'].child['0'] = root.child['0'].child['E']
+	root.child['0'].child['.'].child['0'] = root.child['0'].child['.']
+	for i := '1'; i <= '9'; i++ {
+		root.child['0'].child['E'].child[i] = root.child['0'].child['E']
+		root.child['0'].child['.'].child[i] = root.child['0'].child['.']
+	}
+	root.child['0'].child['.'].child['E'] = root.child['0'].child['E']
+
+	root.child['0'].child['E'].child['.'] = new(Node)
+	root.child['0'].child['E'].child['.'].final = true
+	root.child['0'].child['E'].child['.'].child = make(map[rune]*Node)
+	root.child['0'].child['E'].child['.'].child['0'] = root.child['0'].child['E'].child['.']
+	for i := '1'; i <= '9'; i++ {
+		root.child['0'].child['E'].child['.'].child[i] = root.child['0'].child['E'].child['.']
+	}
+	return root
 }
