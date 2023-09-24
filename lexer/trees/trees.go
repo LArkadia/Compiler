@@ -69,3 +69,13 @@ func (root *Node) Is_complete(sequence []rune) bool {
 		return false
 	}
 }
+
+func Get_numbers_tree()*Node{
+	root :=new(Node)
+	root.child=make(map[rune]*Node,0)
+	root.child['0']=new(Node)
+	//root.child['.']=root.child['0']
+	for i:='1'; i <= '9'; i++ {
+		root.child[i] = root.child['0']
+	}
+}
