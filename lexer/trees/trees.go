@@ -78,4 +78,10 @@ func Get_numbers_tree()*Node{
 	for i:='1'; i <= '9'; i++ {
 		root.child[i] = root.child['0']
 	}
+	root.child['0'].final = true
+	root.child['0'].child = make(map[rune]*Node)
+	root.child['0'].child['0'] = root.child['0']
+	for i := '1'; i <= '9'; i++ {
+		root.child['0'].child[i] = root.child['0']
+	}
 }
