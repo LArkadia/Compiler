@@ -1,3 +1,4 @@
+//Archivo trees
 package trees
 
 type Node struct{
