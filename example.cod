@@ -1,0 +1,16 @@
+// Comentario unilinea
+/*  Comentario multilinea
+parte2 
+y
+3
+del
+Comentario
+*/
+fun main(){
+    var num1 = 1;
+    var expo = 12.12E45.6;
+    var ifi = num1 + expo;
+    if( num <= expo and !true){
+
+    }
+}
