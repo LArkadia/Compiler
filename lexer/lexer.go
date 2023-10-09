@@ -76,6 +76,24 @@ start:
 		goto Id
 	}
 Op:
+	//Comments handler
+	if len(buffer) == 2 {
+		switch {
+		case buffer[0] == '/' && buffer[1] == '/':
+			for pointer < code_len && code[pointer] != '\n' {
+				pointer++
+			}
+			buffer = []rune{}
+			goto start
+		case buffer[0] == '/' && buffer[1] == '*':
+			for pointer < code_len-1 && (code[pointer] != '*' || code[pointer+1] != '/') {
+				pointer++
+			}
+			pointer += 2
+			buffer = []rune{}
+			goto start
+		}
+	}
 Num:
 Str:
 Id:
