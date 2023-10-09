@@ -100,14 +100,31 @@ Op:
 		buffer = append(buffer, code[pointer])
 		pointer++
 		goto Op
-	case (tokens_sequences.Is_complete(buffer) && (spaces.Contains(code[pointer:pointer+1])) || (non_spaced_tokens[code[pointer]]) || tokens_sequences.Is_complete(buffer) && non_spaced_tokens[buffer[0]]):
+	case (tokens_sequences.IsComplete(buffer) && (spaces.Contains(code[pointer:pointer+1]) || (non_spaced_tokens[code[pointer]])) || tokens_sequences.IsComplete(buffer) && non_spaced_tokens[buffer[0]]):
 		goto add_tkn_OP
 
 	default:
 		goto Id
 	}
 Num:
+	switch {
+	case numbers.IsComplete(append(buffer, code[pointer])):
+		buffer = append(buffer, code[pointer])
+		pointer++
+		goto Num
+	default:
+		goto add_tkn_Num
+	}
 Str:
+	switch {
+	case pointer < code_len && code[pointer] != '"':
+		buffer = append(buffer, code[pointer])
+		pointer++
+		goto Str
+	default:
+		pointer++
+		goto add_tkn_Str
+	}
 Id:
 	switch {
 	case !spaces.Contains(code[pointer:pointer+1]) && !non_spaced_tokens[code[pointer]]:
@@ -137,4 +154,16 @@ add_tkn_Id:
 	goto start
 end:
 	return lexed_code.String()
+}
+func Lexate_file(file string) string {
+	var lexated_code strings.Builder
+	source_code_string, err := os.ReadFile(file)
+	if err != nil {
+		fmt.Println("Error while reading the source code file: ", err)
+	}
+	NTree := trees.GetNumbersTree()
+	WS := trees.GetWhiteSpaces()
+	tokens_sequences, non_spaced_tokens, tokens := LoadLexerDefinition("tokens.json")
+	lexated_code.WriteString(Lexate([]rune(string(source_code_string)), tokens_sequences, non_spaced_tokens, tokens, NTree, WS))
+	return lexated_code.String()
 }

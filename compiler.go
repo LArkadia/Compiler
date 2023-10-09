@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"compiler/lexer"
+	"compiler/lexer/trees"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -14,7 +17,23 @@ func main() {
 	case len(params) == 1:
 		switch params[0] {
 		case "-CLI":
+			tokens_sequences, non_spaced_tokens, tokens := lexer.LoadLexerDefinition("tokens.json")
+			Numbers_tree := trees.GetNumbersTree()
+			WS := trees.GetWhiteSpaces()
+			fmt.Println("Welcome to the CLI")
+			for true {
+				reader := bufio.NewReader(os.Stdin)
+				line, err := reader.ReadString('\n')
+				if err != nil {
+					log.Fatal(err)
+				}
 
+				if line[:6] == "exit()" {
+					break
+				} else {
+					fmt.Println(lexer.Lexate([]rune(line), tokens_sequences, non_spaced_tokens, tokens, Numbers_tree, WS))
+				}
+			}
 		default:
 			lexed_code := lexer.Lexate_file(params[0])
 			fmt.Println(lexed_code)
