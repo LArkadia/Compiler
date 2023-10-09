@@ -1,5 +1,11 @@
 package main
 
+/*
+Autores:
+- Barros M. Luis Enrique (LArkadia)
+- Bautista R. Alfredo (elsrdelanoche)
+- Contreras V. Samuel Alejandro (sammmcv)
+*/
 import (
 	"bufio"
 	"compiler/lexer"
@@ -27,7 +33,6 @@ func main() {
 				if err != nil {
 					log.Fatal(err)
 				}
-
 				if line[:6] == "exit()" {
 					break
 				} else {
