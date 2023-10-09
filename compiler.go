@@ -2,10 +2,11 @@ package main
 
 /*
 Autores:
-- Barros M. Luis Enrique (LArkadia)
-- Bautista R. Alfredo (elsrdelanoche)
-- Contreras V. Samuel Alejandro (sammmcv)
+- Barros Martínez Luis Enrique (LArkadia)
+- Bautista Rios Alfredo (elsrdelanoche)
+- Cortés Velázquez Samuel Alejandro (sammmcv)
 */
+
 import (
 	"bufio"
 	"compiler/lexer"
