@@ -94,6 +94,18 @@ Op:
 			goto start
 		}
 	}
+	//Tokens Handler
+	switch {
+	case tokens_sequences.Contains(append(buffer, code[pointer])):
+		buffer = append(buffer, code[pointer])
+		pointer++
+		goto Op
+	case (tokens_sequences.Is_complete(buffer) && (spaces.Contains(code[pointer:pointer+1])) || (non_spaced_tokens[code[pointer]]) || tokens_sequences.Is_complete(buffer) && non_spaced_tokens[buffer[0]]):
+		goto add_tkn_OP
+
+	default:
+		goto Id
+	}
 Num:
 Str:
 Id:
