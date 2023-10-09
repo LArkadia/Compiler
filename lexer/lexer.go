@@ -141,15 +141,15 @@ add_tkn_OP:
 	buffer = []rune{}
 	goto start
 add_tkn_Num:
-	lexed_code.WriteString("Num: " + string(buffer) + "\n")
+	lexed_code.WriteString("NUMBER_" + string(buffer) + "\n")
 	buffer = []rune{}
 	goto start
 add_tkn_Str:
-	lexed_code.WriteString("Str: " + string(buffer) + "\n")
+	lexed_code.WriteString("STRING_" + string(buffer) + "\n")
 	buffer = []rune{}
 	goto start
 add_tkn_Id:
-	lexed_code.WriteString("ID_" + string(buffer) + "\n")
+	lexed_code.WriteString("IDENTIFIER_" + string(buffer) + "\n")
 	buffer = []rune{}
 	goto start
 end:
